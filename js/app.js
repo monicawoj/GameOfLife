@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    var play = document.querySelector('#play');
+    var pause = document.querySelector('#pause');
+
     var GameOfLife = function(boardWidth, boardHeight) {
         this.width = boardWidth;
         this.height = boardHeight;
@@ -30,16 +33,16 @@ document.addEventListener('DOMContentLoaded', function() {
         this.setCellState = function(x,y,state) {
             if (state==='live') {
                 this.blockIndex(x,y).classList.add('live');
-            } if (state === 'dead') {
-                this.bloackIndex(x,y).classList.remove('live');
+            } else {
+                this.blockIndex(x,y).classList.remove('live');
             }
         };
         this.firstGlider = function() {
-            this.setCellState(2,3,'live');
-            this.setCellState(3,3,'live');
-            this.setCellState(4,3,'live');
-            this.setCellState(4,2,'live');
-            this.setCellState(3,1,'live');
+            this.setCellState(0,2,'live');
+            this.setCellState(1,2,'live');
+            this.setCellState(2,2,'live');
+            this.setCellState(2,1,'live');
+            this.setCellState(1,0,'live');
         };
         this.neighborState = function(x,y) {
             if (typeof this.blockIndex(x,y) !== 'undefined') {
@@ -96,29 +99,38 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         this.computeNextGeneration = function() {
             var nextGenerationStates = [];
-            for (var i=0; i<this.width; i++) {
-                for (var j=0; j<this.height; j++) {
-                    nextGenerationStates.push(this.computeCellNextState(i,j));
+            for (var i=0; i<this.height; i++) {
+                for (var j=0; j<this.width; j++) {
+                    nextGenerationStates.push(this.computeCellNextState(j,i));
                 }
             }
-            console.log(nextGenerationStates);
+            return nextGenerationStates;
         };
         this.printNextGeneration = function() {
-
+            var nextGenerationArray = this.computeNextGeneration();
+            for (var i=0; i<nextGenerationArray.length; i++) {
+                if (nextGenerationArray[i] === 1) {
+                    this.blocks[i].classList.add('live');
+                } else {
+                    this.blocks[i].classList.remove('live');
+                }
+            }
         };
     };
 
     var game = new GameOfLife(10,10);
-    console.log(game);
     game.createBoard();
-    console.log(game.board.style.width);
-    console.log(game.blocks);
-    console.log(game.blockIndex(3,3));
     game.firstGlider();
-    //game.neighborState(0,0);
-    //game.computeCellNextState(3,3);
-    console.log(game.computeCellNextState(0,0));
-    game.computeNextGeneration();
+    //console.log(game);
+    //console.log(game.board.style.width);
+    //console.log(game.blocks);
+    //console.log(game.blockIndex(1,0));
+    //console.log(game.computeCellNextState(1,0));
+    //console.log(game.blockIndex(1,0));
+   
+    play.addEventListener('click', function(event) {
+        game.printNextGeneration()
+    });
 
 
 });
