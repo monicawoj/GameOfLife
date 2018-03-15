@@ -13,8 +13,22 @@
         <section id="board">
         </section> 
         <section id="game-set">
-            <button id="play">graj</button>
-            <button id="pause">pauza</button>
+            <button id="play">Play</button>
+            <button id="pause">Pause</button>
+        </section>
+        <section id="board-set">
+            <form>
+                <fieldset>
+                    <legend>Set board dimensions:</legend>
+                    <label>Width:
+                        <input id="width-set" size="10" type="number" name="width" min="10" max="100">
+                    </label>
+                    <label>Height:
+                        <input id="height-set" type="number" name="height" min="10" max="100">
+                    </label>
+                </fieldset>
+                <input class="submit" type="submit" value="Create board">
+            </form>
         </section>
     </div>
 </body>

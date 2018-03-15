@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var play = document.querySelector('#play');
     var pause = document.querySelector('#pause');
 
+
     var GameOfLife = function(boardWidth, boardHeight) {
         this.width = boardWidth;
         this.height = boardHeight;
@@ -10,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         this.blocks = [];
         this.numberCells = boardWidth * boardHeight;
         this.createBoard = function() {
-            this.board.style.width = (boardWidth * 10) + 'px';
-            this.board.style.height = (boardHeight * 10) + 'px';
+            this.board.style.width = (boardWidth * 15) + 'px';
+            this.board.style.height = (boardHeight * 15) + 'px';
             for (i=0; i<this.numberCells; i++) {
                     var block = document.createElement('div');
                     this.blocks.push(block);
@@ -116,21 +117,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         };
+
+        var self = this;
+        play.addEventListener('click', function(event) {
+            self.intervalId = setInterval(function() {
+                self.printNextGeneration();
+            }, 500);
+        });
+
+        pause.addEventListener('click', function(event) {
+            clearInterval(self.intervalId);
+        });
     };
 
     var game = new GameOfLife(10,10);
     game.createBoard();
     game.firstGlider();
-    //console.log(game);
-    //console.log(game.board.style.width);
-    //console.log(game.blocks);
-    //console.log(game.blockIndex(1,0));
-    //console.log(game.computeCellNextState(1,0));
-    //console.log(game.blockIndex(1,0));
-   
-    play.addEventListener('click', function(event) {
-        game.printNextGeneration()
-    });
-
-
 });
