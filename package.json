@@ -1,0 +1,25 @@
+{
+  "name": "0gulp",
+  "version": "1.0.0",
+  "description": "<img alt=\"Logo\" src=\"http://coderslab.pl/svg/logo-coderslab.svg\" width=\"400\">",
+  "main": "gulpfile.js",
+  "scripts": {
+    "babel": "babel --presets es2015 js/app.js -o build/app.bundle.js",
+    "start": "http-server",
+    "webpack": "webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "jshint": "^2.9.5"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.11"
+  }
+}
