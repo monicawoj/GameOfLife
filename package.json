@@ -6,7 +6,8 @@
   "scripts": {
     "babel": "babel --presets es2015 js/app.js -o build/app.bundle.js",
     "start": "http-server",
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "gulp": "gulp"
   },
   "author": "",
   "license": "ISC",

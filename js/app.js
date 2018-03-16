@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     var play = document.querySelector('#play');
     var pause = document.querySelector('#pause');
-    var userWidth = document.querySelector('#width-set').value;
-    var userHeight = document.querySelector('#height-set').value;
     var startButton = document.querySelector('.start');
 
     var GameOfLife = function(boardWidth, boardHeight) {
@@ -133,9 +131,12 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     startButton.addEventListener('click', function(event) {
-        var game = new GameOfLife(userWidth,userHeight);
+        event.preventDefault();
+        var userWidth = document.querySelector('#width-set').value;
+        var userHeight = document.querySelector('#height-set').value;
+        var game = new GameOfLife(parseInt(userWidth),parseInt(userHeight));
         game.createBoard();
         game.firstGlider();
-    })
-
+        document.querySelector('#game-set').style.display = 'block';
+    });
 });
